@@ -3,17 +3,16 @@
 import * as React from "react"
 import { 
   PlusIcon,
-  BotIcon,
+  ShieldCheckIcon,
   MessageSquareIcon,
   BrainIcon,
-  UsersIcon,
-  BookOpenIcon,
+  TrendingUpIcon,
+  GraduationCapIcon,
+  CodeIcon,
   SettingsIcon,
   SparklesIcon,
   DatabaseIcon,
   ZapIcon,
-  TrendingUpIcon,
-  ClockIcon,
   StarIcon
 } from "lucide-react"
 
@@ -23,41 +22,47 @@ import { Badge } from '@/components/ui/badge'
 
 const projectTypes = [
   { 
-    icon: BotIcon, 
-    title: "AI Assistant", 
-    color: "text-blue-400",
-    bgColor: "bg-sidebar"
+    icon: ShieldCheckIcon, 
+    title: "Security Guard", 
+    color: "text-red-400",
+    bgColor: "bg-sidebar",
+    description: "Monitors and protects against threats"
   },
   { 
     icon: MessageSquareIcon, 
-    title: "Customer Support", 
+    title: "Support Agent", 
     color: "text-green-400",
-    bgColor: "bg-sidebar"
+    bgColor: "bg-sidebar",
+    description: "Handles customer inquiries and issues"
   },
   { 
     icon: BrainIcon, 
-    title: "Knowledge Bot", 
+    title: "Knowledge Expert", 
     color: "text-purple-400",
     bgColor: "bg-sidebar",
-    isClickable: true
+    isClickable: true,
+    description: "Answers questions from your knowledge base"
   },
   { 
-    icon: UsersIcon, 
-    title: "Sales Assistant", 
+    icon: TrendingUpIcon, 
+    title: "Sales Closer", 
     color: "text-orange-400",
-    bgColor: "bg-sidebar"
+    bgColor: "bg-sidebar",
+    description: "Converts leads into customers"
   },
   { 
-    icon: BookOpenIcon, 
-    title: "Training Bot", 
+    icon: GraduationCapIcon, 
+    title: "Learning Coach", 
     color: "text-indigo-400",
-    bgColor: "bg-sidebar"
+    bgColor: "bg-sidebar",
+    description: "Guides users through educational content"
   },
   { 
-    icon: SparklesIcon, 
-    title: "Creative Assistant", 
-    color: "text-pink-400",
-    bgColor: "bg-sidebar"
+    icon: CodeIcon, 
+    title: "Code Reviewer", 
+    color: "text-cyan-400",
+    bgColor: "bg-sidebar",
+    description: "Reviews and suggests code improvements"
   }
 ]
 
@@ -161,7 +166,7 @@ interface HomepageProps {
 
 export function Homepage({ onNavigateToChat }: HomepageProps) {
   const handleProjectTypeClick = (type: any) => {
-    if (type.isClickable && type.title === "Knowledge Bot") {
+    if (type.isClickable && type.title === "Knowledge Expert") {
       onNavigateToChat()
     }
   }
@@ -197,54 +202,6 @@ export function Homepage({ onNavigateToChat }: HomepageProps) {
                 Start Chat
               </Button>
             </div>
-          </div>
-
-          {/* Quick Stats */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-            <Card className="bg-sidebar border-0 p-4">
-              <div className="flex items-center gap-3">
-                <div className="bg-blue-500 p-2 rounded-lg">
-                  <BotIcon className="h-4 w-4 text-white" />
-                </div>
-                <div>
-                  <p className="text-sidebar-foreground/70 text-xs">Active Bots</p>
-                  <p className="text-sidebar-foreground text-lg font-semibold">12</p>
-                </div>
-              </div>
-            </Card>
-            <Card className="bg-sidebar border-0 p-4">
-              <div className="flex items-center gap-3">
-                <div className="bg-green-500 p-2 rounded-lg">
-                  <MessageSquareIcon className="h-4 w-4 text-white" />
-                </div>
-                <div>
-                  <p className="text-sidebar-foreground/70 text-xs">Conversations</p>
-                  <p className="text-sidebar-foreground text-lg font-semibold">1.2k</p>
-                </div>
-              </div>
-            </Card>
-            <Card className="bg-sidebar border-0 p-4">
-              <div className="flex items-center gap-3">
-                <div className="bg-purple-500 p-2 rounded-lg">
-                  <TrendingUpIcon className="h-4 w-4 text-white" />
-                </div>
-                <div>
-                  <p className="text-sidebar-foreground/70 text-xs">Success Rate</p>
-                  <p className="text-sidebar-foreground text-lg font-semibold">94%</p>
-                </div>
-              </div>
-            </Card>
-            <Card className="bg-sidebar border-0 p-4">
-              <div className="flex items-center gap-3">
-                <div className="bg-orange-500 p-2 rounded-lg">
-                  <ClockIcon className="h-4 w-4 text-white" />
-                </div>
-                <div>
-                  <p className="text-sidebar-foreground/70 text-xs">Avg Response</p>
-                  <p className="text-sidebar-foreground text-lg font-semibold">1.2s</p>
-                </div>
-              </div>
-            </Card>
           </div>
 
           {/* Bot Types Grid - Mobile: 2 rows x 3 cols, Desktop: 1 row x 6 cols */}
