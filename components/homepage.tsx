@@ -3,16 +3,14 @@
 import * as React from "react"
 import { 
   PlusIcon,
-  ShieldCheckIcon,
+  BotIcon,
   MessageSquareIcon,
-  BrainIcon,
-  TrendingUpIcon,
-  GraduationCapIcon,
-  CodeIcon,
-  SettingsIcon,
-  SparklesIcon,
   DatabaseIcon,
+  BarChartIcon,
+  SettingsIcon,
   ZapIcon,
+  SparklesIcon,
+  BrainIcon,
   StarIcon
 } from "lucide-react"
 
@@ -20,49 +18,49 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 
-const projectTypes = [
+const productFeatures = [
   { 
-    icon: ShieldCheckIcon, 
-    title: "Security Guard", 
-    color: "text-red-400",
+    icon: BotIcon, 
+    title: "AI Chatbots", 
+    color: "text-blue-400",
     bgColor: "bg-sidebar",
-    description: "Monitors and protects against threats"
+    description: "Create intelligent conversational AI agents"
   },
   { 
     icon: MessageSquareIcon, 
-    title: "Support Agent", 
+    title: "Live Chat", 
     color: "text-green-400",
     bgColor: "bg-sidebar",
-    description: "Handles customer inquiries and issues"
+    description: "Real-time customer communication platform"
   },
   { 
-    icon: BrainIcon, 
-    title: "Knowledge Expert", 
+    icon: DatabaseIcon, 
+    title: "Knowledge Base", 
     color: "text-purple-400",
     bgColor: "bg-sidebar",
     isClickable: true,
-    description: "Answers questions from your knowledge base"
+    description: "Centralized information management system"
   },
   { 
-    icon: TrendingUpIcon, 
-    title: "Sales Closer", 
+    icon: BarChartIcon, 
+    title: "Analytics", 
     color: "text-orange-400",
     bgColor: "bg-sidebar",
-    description: "Converts leads into customers"
+    description: "Performance insights and conversation metrics"
   },
   { 
-    icon: GraduationCapIcon, 
-    title: "Learning Coach", 
-    color: "text-indigo-400",
+    icon: ZapIcon, 
+    title: "Integrations", 
+    color: "text-yellow-400",
     bgColor: "bg-sidebar",
-    description: "Guides users through educational content"
+    description: "Connect with your favorite tools and platforms"
   },
   { 
-    icon: CodeIcon, 
-    title: "Code Reviewer", 
+    icon: SettingsIcon, 
+    title: "Automation", 
     color: "text-cyan-400",
     bgColor: "bg-sidebar",
-    description: "Reviews and suggests code improvements"
+    description: "Workflow automation and smart routing"
   }
 ]
 
@@ -128,7 +126,7 @@ const quickActions = [
     bgColor: "bg-pink-500"
   },
   {
-    icon: DatabaseIcon,
+    icon: BrainIcon,
     title: "Import Knowledge",
     description: "Upload documents and data to train your chatbot",
     color: "text-blue-400",
@@ -165,8 +163,8 @@ interface HomepageProps {
 }
 
 export function Homepage({ onNavigateToChat }: HomepageProps) {
-  const handleProjectTypeClick = (type: any) => {
-    if (type.isClickable && type.title === "Knowledge Expert") {
+  const handleFeatureClick = (feature: any) => {
+    if (feature.isClickable && feature.title === "Knowledge Base") {
       onNavigateToChat()
     }
   }
@@ -204,19 +202,19 @@ export function Homepage({ onNavigateToChat }: HomepageProps) {
             </div>
           </div>
 
-          {/* Bot Types Grid - Mobile: 2 rows x 3 cols, Desktop: 1 row x 6 cols */}
+          {/* Product Features Grid - Mobile: 2 rows x 3 cols, Desktop: 1 row x 6 cols */}
           <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
-            {projectTypes.map((type, index) => (
+            {productFeatures.map((feature, index) => (
               <div key={index} className="flex flex-col items-center">
                 <Card
-                  onClick={() => handleProjectTypeClick(type)}
+                  onClick={() => handleFeatureClick(feature)}
                   className={`bg-sidebar border-0 hover:bg-sidebar-accent transition-colors p-6 aspect-square flex items-center justify-center w-full ${
-                    type.isClickable ? 'cursor-pointer' : 'cursor-default'
+                    feature.isClickable ? 'cursor-pointer' : 'cursor-default'
                   }`}
                 >
-                  <type.icon className={`h-8 w-8 ${type.color}`} />
+                  <feature.icon className={`h-8 w-8 ${feature.color}`} />
                 </Card>
-                <p className="text-sm text-white font-medium mt-3 text-center">{type.title}</p>
+                <p className="text-sm text-white font-medium mt-3 text-center">{feature.title}</p>
               </div>
             ))}
           </div>
