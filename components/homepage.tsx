@@ -3,127 +3,157 @@
 import * as React from "react"
 import { 
   PlusIcon,
-  MicIcon,
-  BookOpenIcon,
+  BotIcon,
   MessageSquareIcon,
-  RadioIcon,
-  VolumeXIcon,
-  VideoIcon,
+  BrainIcon,
+  UsersIcon,
+  BookOpenIcon,
+  SettingsIcon,
   SparklesIcon,
-  CopyIcon,
-  LibraryIcon,
-  SettingsIcon
+  DatabaseIcon,
+  ZapIcon,
+  TrendingUpIcon,
+  ClockIcon,
+  StarIcon
 } from "lucide-react"
 
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
 
 const projectTypes = [
   { 
-    icon: MicIcon, 
-    title: "Instant speech", 
+    icon: BotIcon, 
+    title: "AI Assistant", 
     color: "text-blue-400",
     bgColor: "bg-sidebar"
   },
   { 
-    icon: BookOpenIcon, 
-    title: "Audiobook", 
-    color: "text-red-400",
+    icon: MessageSquareIcon, 
+    title: "Customer Support", 
+    color: "text-green-400",
     bgColor: "bg-sidebar"
   },
   { 
-    icon: MessageSquareIcon, 
-    title: "Conversational AI", 
+    icon: BrainIcon, 
+    title: "Knowledge Bot", 
     color: "text-purple-400",
     bgColor: "bg-sidebar",
     isClickable: true
   },
   { 
-    icon: RadioIcon, 
-    title: "Podcast", 
+    icon: UsersIcon, 
+    title: "Sales Assistant", 
     color: "text-orange-400",
     bgColor: "bg-sidebar"
   },
   { 
-    icon: VolumeXIcon, 
-    title: "Sound effect", 
-    color: "text-blue-400",
+    icon: BookOpenIcon, 
+    title: "Training Bot", 
+    color: "text-indigo-400",
     bgColor: "bg-sidebar"
   },
   { 
-    icon: VideoIcon, 
-    title: "Dubbed video", 
-    color: "text-green-400",
+    icon: SparklesIcon, 
+    title: "Creative Assistant", 
+    color: "text-pink-400",
     bgColor: "bg-sidebar"
   }
 ]
 
-const libraryItems = [
+const recentConversations = [
   {
     id: 1,
-    name: "Ate Namie",
-    title: "Tagalog and Filipino Narrator",
-    description: "Namie Voice is a captivating narrator, blending warmth and...",
-    avatar: "🥥",
-    bgColor: "bg-orange-500"
+    botName: "Customer Support Pro",
+    lastMessage: "How can I help you with your order today?",
+    timestamp: "2 minutes ago",
+    messageCount: 24,
+    avatar: "🎧",
+    bgColor: "bg-blue-500",
+    status: "active"
   },
   {
     id: 2,
-    name: "Dok Jim",
-    title: "The Good Doctor Storyteller",
-    description: "Dok Jim's voice exudes warmth, empathy, and wisdom, perfect for...",
-    avatar: "🩺",
-    bgColor: "bg-blue-500"
+    botName: "Sales Navigator",
+    lastMessage: "I'd be happy to show you our premium features...",
+    timestamp: "15 minutes ago",
+    messageCount: 12,
+    avatar: "💼",
+    bgColor: "bg-green-500",
+    status: "active"
   },
   {
     id: 3,
-    name: "Prof. Francisco",
-    title: "Filipino Teacher and Educator of AI",
-    description: "Prof. Francisco is a passionate AI educator whose voice exudes...",
-    avatar: "🌱",
-    bgColor: "bg-green-500"
+    botName: "Knowledge Helper",
+    lastMessage: "Based on your documentation, here's what I found...",
+    timestamp: "1 hour ago",
+    messageCount: 8,
+    avatar: "📚",
+    bgColor: "bg-purple-500",
+    status: "idle"
   },
   {
     id: 4,
-    name: "Super VM",
-    title: "Voice of Hope & the Unheard",
-    description: "He sounds like a brave Super VoiceMaster with a heart full of...",
-    avatar: "🌸",
-    bgColor: "bg-pink-500"
+    botName: "Training Assistant",
+    lastMessage: "Let's continue with the next module of your course...",
+    timestamp: "3 hours ago",
+    messageCount: 45,
+    avatar: "🎓",
+    bgColor: "bg-orange-500",
+    status: "idle"
   },
   {
     id: 5,
-    name: "Tiya Maria MaKuwento",
-    title: "A 45-Year-Old Storyteller of...",
-    description: "Tiya Maria MaKuwento is a seasoned 45-year-old storyteller...",
-    avatar: "🌸",
-    bgColor: "bg-pink-500"
+    botName: "Creative Writer",
+    lastMessage: "I've generated three different versions of your content...",
+    timestamp: "1 day ago",
+    messageCount: 6,
+    avatar: "✍️",
+    bgColor: "bg-pink-500",
+    status: "idle"
   }
 ]
 
-const voiceActions = [
+const quickActions = [
   {
     icon: SparklesIcon,
-    title: "Voice Design",
-    description: "Design an entirely new voice from a text prompt",
+    title: "Create New Bot",
+    description: "Build a custom AI chatbot with personality and context",
     color: "text-pink-400",
     bgColor: "bg-pink-500"
   },
   {
-    icon: CopyIcon,
-    title: "Clone your Voice",
-    description: "Create a realistic digital clone of your voice",
-    color: "text-green-400",
-    bgColor: "bg-green-500"
-  },
-  {
-    icon: LibraryIcon,
-    title: "Voice Collections",
-    description: "Curated AI voices for every use case",
+    icon: DatabaseIcon,
+    title: "Import Knowledge",
+    description: "Upload documents and data to train your chatbot",
     color: "text-blue-400",
     bgColor: "bg-blue-500"
+  },
+  {
+    icon: ZapIcon,
+    title: "Bot Templates",
+    description: "Start with pre-built chatbot templates for common use cases",
+    color: "text-green-400",
+    bgColor: "bg-green-500"
   }
 ]
+
+const getStatusBadge = (status: string) => {
+  if (status === 'active') {
+    return (
+      <Badge variant="outline" className="bg-green-500/10 text-green-500 border-green-500/20 text-xs">
+        <div className="w-2 h-2 bg-green-500 rounded-full mr-1"></div>
+        Active
+      </Badge>
+    )
+  }
+  return (
+    <Badge variant="outline" className="bg-gray-500/10 text-gray-500 border-gray-500/20 text-xs">
+      <div className="w-2 h-2 bg-gray-500 rounded-full mr-1"></div>
+      Idle
+    </Badge>
+  )
+}
 
 interface HomepageProps {
   onNavigateToChat: () => void
@@ -131,7 +161,7 @@ interface HomepageProps {
 
 export function Homepage({ onNavigateToChat }: HomepageProps) {
   const handleProjectTypeClick = (type: any) => {
-    if (type.isClickable && type.title === "Conversational AI") {
+    if (type.isClickable && type.title === "Knowledge Bot") {
       onNavigateToChat()
     }
   }
@@ -161,14 +191,63 @@ export function Homepage({ onNavigateToChat }: HomepageProps) {
                 variant="outline"
                 size="sm"
                 className="bg-gray-700 border-gray-600 text-white hover:bg-gray-600 hover:border-gray-500"
+                onClick={onNavigateToChat}
               >
                 <MessageSquareIcon className="h-4 w-4 mr-2" />
-                Talk to El
+                Start Chat
               </Button>
             </div>
           </div>
 
-          {/* Project Types Grid - Mobile: 2 rows x 3 cols, Desktop: 1 row x 6 cols */}
+          {/* Quick Stats */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+            <Card className="bg-sidebar border-0 p-4">
+              <div className="flex items-center gap-3">
+                <div className="bg-blue-500 p-2 rounded-lg">
+                  <BotIcon className="h-4 w-4 text-white" />
+                </div>
+                <div>
+                  <p className="text-sidebar-foreground/70 text-xs">Active Bots</p>
+                  <p className="text-sidebar-foreground text-lg font-semibold">12</p>
+                </div>
+              </div>
+            </Card>
+            <Card className="bg-sidebar border-0 p-4">
+              <div className="flex items-center gap-3">
+                <div className="bg-green-500 p-2 rounded-lg">
+                  <MessageSquareIcon className="h-4 w-4 text-white" />
+                </div>
+                <div>
+                  <p className="text-sidebar-foreground/70 text-xs">Conversations</p>
+                  <p className="text-sidebar-foreground text-lg font-semibold">1.2k</p>
+                </div>
+              </div>
+            </Card>
+            <Card className="bg-sidebar border-0 p-4">
+              <div className="flex items-center gap-3">
+                <div className="bg-purple-500 p-2 rounded-lg">
+                  <TrendingUpIcon className="h-4 w-4 text-white" />
+                </div>
+                <div>
+                  <p className="text-sidebar-foreground/70 text-xs">Success Rate</p>
+                  <p className="text-sidebar-foreground text-lg font-semibold">94%</p>
+                </div>
+              </div>
+            </Card>
+            <Card className="bg-sidebar border-0 p-4">
+              <div className="flex items-center gap-3">
+                <div className="bg-orange-500 p-2 rounded-lg">
+                  <ClockIcon className="h-4 w-4 text-white" />
+                </div>
+                <div>
+                  <p className="text-sidebar-foreground/70 text-xs">Avg Response</p>
+                  <p className="text-sidebar-foreground text-lg font-semibold">1.2s</p>
+                </div>
+              </div>
+            </Card>
+          </div>
+
+          {/* Bot Types Grid - Mobile: 2 rows x 3 cols, Desktop: 1 row x 6 cols */}
           <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
             {projectTypes.map((type, index) => (
               <div key={index} className="flex flex-col items-center">
@@ -188,26 +267,45 @@ export function Homepage({ onNavigateToChat }: HomepageProps) {
 
         {/* Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Latest from the library */}
+          {/* Recent Conversations */}
           <div>
-            <h2 className="text-xl font-semibold text-white mb-6">Latest from the library</h2>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-semibold text-white">Recent Conversations</h2>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-gray-400 hover:text-white"
+              >
+                View All
+              </Button>
+            </div>
             <div className="space-y-4">
-              {libraryItems.map((item) => (
+              {recentConversations.map((conversation) => (
                 <Card
-                  key={item.id}
+                  key={conversation.id}
                   className="bg-sidebar border-0 hover:bg-sidebar-accent transition-colors cursor-pointer p-4"
                 >
                   <div className="flex items-start gap-3">
-                    <div className={`${item.bgColor} w-10 h-10 rounded-full flex items-center justify-center text-white font-medium flex-shrink-0`}>
-                      {item.avatar}
+                    <div className={`${conversation.bgColor} w-10 h-10 rounded-full flex items-center justify-center text-white font-medium flex-shrink-0`}>
+                      {conversation.avatar}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-sidebar-foreground font-medium mb-1">
-                        {item.name} · {item.title}
-                      </h3>
-                      <p className="text-sidebar-foreground/70 text-sm line-clamp-2">
-                        {item.description}
+                      <div className="flex items-center justify-between mb-1">
+                        <h3 className="text-sidebar-foreground font-medium truncate">
+                          {conversation.botName}
+                        </h3>
+                        {getStatusBadge(conversation.status)}
+                      </div>
+                      <p className="text-sidebar-foreground/70 text-sm line-clamp-1 mb-2">
+                        {conversation.lastMessage}
                       </p>
+                      <div className="flex items-center justify-between text-xs text-sidebar-foreground/60">
+                        <span className="flex items-center gap-1">
+                          <MessageSquareIcon className="h-3 w-3" />
+                          {conversation.messageCount} messages
+                        </span>
+                        <span>{conversation.timestamp}</span>
+                      </div>
                     </div>
                   </div>
                 </Card>
@@ -215,11 +313,13 @@ export function Homepage({ onNavigateToChat }: HomepageProps) {
             </div>
           </div>
 
-          {/* Create or clone a voice */}
+          {/* Quick Actions */}
           <div>
-            <h2 className="text-xl font-semibold text-white mb-6">Create or clone a voice</h2>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-semibold text-white">Quick Actions</h2>
+            </div>
             <div className="space-y-4">
-              {voiceActions.map((action, index) => (
+              {quickActions.map((action, index) => (
                 <Card
                   key={index}
                   className="bg-sidebar border-0 hover:bg-sidebar-accent transition-colors cursor-pointer p-6"
@@ -235,6 +335,29 @@ export function Homepage({ onNavigateToChat }: HomepageProps) {
                   </div>
                 </Card>
               ))}
+              
+              {/* Featured Templates */}
+              <Card className="bg-sidebar border-0 p-6 border border-blue-500/20">
+                <div className="flex items-start gap-4">
+                  <div className="bg-gradient-to-br from-blue-500 to-purple-600 p-3 rounded-lg flex-shrink-0">
+                    <StarIcon className="h-6 w-6 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <h3 className="text-sidebar-foreground font-semibold">Featured Templates</h3>
+                      <Badge variant="outline" className="bg-blue-500/10 text-blue-500 border-blue-500/20 text-xs">
+                        New
+                      </Badge>
+                    </div>
+                    <p className="text-sidebar-foreground/70 text-sm mb-3">
+                      Explore our newest collection of industry-specific chatbot templates
+                    </p>
+                    <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
+                      Browse Templates
+                    </Button>
+                  </div>
+                </div>
+              </Card>
             </div>
           </div>
         </div>
